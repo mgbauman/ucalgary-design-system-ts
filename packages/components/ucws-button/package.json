@@ -1,0 +1,22 @@
+{
+  "name": "@ucalgary-design-system/ucws-button",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@ucalgary-design-system/tokens": "*",
+    "lit": "^3.2.1"
+  },
+  "devDependencies": {
+    "@ucalgary-design-system/tooling-config": "*"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "web-test-runner --config web-test-runner.config.js"
+  },
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ]
+}

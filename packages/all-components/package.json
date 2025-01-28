@@ -1,0 +1,12 @@
+{
+  "name": "@ucalgary-design-system/all-components",
+  "version": "1.0.0",
+  "description": "A library that aggregates all components.",
+  "main": "index.js",
+  "dependencies": {
+    "@ucalgary-design-system/ucds-checkbox": "*",
+    "@ucalgary-design-system/ucds-radio": "*",
+    "@ucalgary-design-system/ucws-button": "*",
+    "@ucalgary-design-system/card": "*"
+  }
+}

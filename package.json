@@ -1,0 +1,49 @@
+{
+  "name": "ucalgary-design-system",
+  "workspaces": [
+    "packages/*",
+    "packages/components/*"
+  ],
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build:dev": "vite build",
+    "build": "lerna run build",
+    "preview": "vite preview --open",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_30e586e96369984",
+    "generate": "node scripts/generate-component.js",
+    "test": "web-test-runner --config web-test-runner.config.js",
+    "test:watch": "web-test-runner --config web-test-runner.config.js --watch",
+    "lint": "eslint . --ignore-path .eslintignore && prettier \"**/*.js\" --check --ignore-path .eslintignore",
+    "format": "eslint --ext .js,.html . --fix --ignore-path .eslintignore && prettier \"**/*.js\" --write --ignore-path .eslintignore",
+    "publish": "lerna publish",
+    "version": "lerna version"
+  },
+  "dependencies": {
+    "lit": "^3.2.1"
+  },
+  "devDependencies": {
+    "@chromatic-com/storybook": "^3.2.3",
+    "@open-wc/eslint-config": "^12.0.3",
+    "@open-wc/testing": "^4.0.0",
+    "@storybook/addon-essentials": "^8.4.7",
+    "@storybook/blocks": "^8.4.7",
+    "@storybook/test": "^8.4.7",
+    "@storybook/web-components": "^8.4.7",
+    "@storybook/web-components-vite": "^8.4.7",
+    "@web/dev-server-esbuild": "^1.0.3",
+    "@web/test-runner": "^0.19.0",
+    "@web/test-runner-playwright": "^0.11.0",
+    "chromatic": "^11.19.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^10.0.1",
+    "lerna": "^8.1.9",
+    "prettier": "^3.4.2",
+    "storybook": "^8.4.7",
+    "vite": "^6.0.5"
+  }
+}

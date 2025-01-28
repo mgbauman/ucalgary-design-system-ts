@@ -1,0 +1,9 @@
+{
+  "name": "@ucalgary-design-system/tooling-config",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "dependencies": {
+    "vite": "^6.0.11"
+  }
+}

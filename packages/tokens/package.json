@@ -1,0 +1,13 @@
+{
+  "name": "@ucalgary-design-system/tokens",
+  "version": "1.0.0",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "style-dictionary build --config style-dictionary.config.json"
+  },
+  "dependencies": {
+    "style-dictionary": "^4.3.0"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@ucalgary-design-system/ucds-checkbox",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "dependencies": {
+    "@ucalgary-design-system/tokens": "*",
+    "lit": "^3.2.1"
+  },
+  "devDependencies": {
+    "@ucalgary-design-system/tooling-config": "*",
+    "@open-wc/testing": "^4.0.0"
+  },
+  "scripts": {
+    "build": "vite build",
+    "test": "web-test-runner --config web-test-runner.config.js"
+  },
+  "files": [
+    "dist/",
+    "package.json",
+    "README.md"
+  ]
+}

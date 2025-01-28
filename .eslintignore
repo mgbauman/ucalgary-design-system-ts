@@ -1,0 +1,8 @@
+/node_modules/
+/dist/
+/storybook-static/
+/packages/**/*.stories.js
+/packages/**/dist/
+/packages/**/coverage/
+/scripts/
+/coverage/

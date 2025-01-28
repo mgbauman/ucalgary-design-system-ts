@@ -1,0 +1,16 @@
+{
+  "source": ["src/*.json"],
+  "platforms": {
+    "css": {
+      "transformGroup": "css",
+      "prefix": "ucds",
+      "buildPath": "dist/css/",
+      "files": [
+        {
+          "destination": "_variables.css",
+          "format": "css/variables"
+        }
+      ]
+    }
+  }
+}
