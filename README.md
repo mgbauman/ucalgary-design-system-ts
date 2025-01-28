@@ -22,10 +22,10 @@ To get started, clone the repository and install dependencies:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/mgbauman/ucalgary-design-system.git
 
 # Navigate to the project directory
-cd <repository-folder>
+cd ucalgary-design-system
 
 # Install dependencies
 npm install
