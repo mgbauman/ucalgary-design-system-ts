@@ -1,0 +1,7 @@
+@define-mixin focus $name {
+  &:focus {
+    outline: var(--ucds-color-action-focus) 3px solid;
+    outline-offset: 3px;
+    border-radius: 8px;
+  }
+}

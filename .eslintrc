@@ -1,21 +1,24 @@
 {
   "extends": [
     "@open-wc/eslint-config",
-    "prettier"
+    "prettier",
+    "plugin:@typescript-eslint/recommended"
   ],
-  "plugins": ["import"],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["import", "@typescript-eslint"],
   "rules": {
     "import/no-extraneous-dependencies": [
       "error",
       {
         "devDependencies": [
-          "**/test/**/*.test.{html,js,mjs,ts}",
-          "**/test/*.test.{html,js,mjs,ts}",
-          "**/test/ucds-radio.test.js",
-          "**/components/**/*.config.js",
-          "**/test/**"
+          "**/components/**/*.test.{html,js,mjs,ts}",
+          "**/components/**/*.config.js"
         ]
       }
-    ]
+    ],
+    // False positives importing css inline using vite.
+    // Docs recommend not using outside webpack:
+    // https://github.com/import-js/eslint-plugin-import/blob/main/docs/rules/no-unresolved.md
+    "import/no-unresolved": 0
   }
 }

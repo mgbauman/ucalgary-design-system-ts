@@ -18,7 +18,7 @@ export class MyElement extends LitElement {
       /**
        * Copy for the read the docs hint.
        */
-      docsHint: { type: String }
+      docsHint: { type: String },
     };
   }
 
@@ -37,7 +37,7 @@ export class MyElement extends LitElement {
           <img src=${litLogo} class="logo lit" alt="Lit logo" />
         </a>
         <a href="https://ucalgary.ca" target="_blank">
-          <img src="${ucLogo}" class="logo ucalgary" alt="Ucalgary logo">
+          <img src="${ucLogo}" class="logo ucalgary" alt="Ucalgary logo" />
         </a>
       </div>
       <slot></slot>
@@ -71,7 +71,7 @@ export class MyElement extends LitElement {
         filter: drop-shadow(0 0 2em #325cffaa);
       }
       .logo.ucalgary:hover {
-        filter: drop-shadow(0 0 2em #D6001C);
+        filter: drop-shadow(0 0 2em #d6001c);
       }
 
       .card {

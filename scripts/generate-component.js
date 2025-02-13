@@ -40,12 +40,22 @@ function createComponentFiles(componentName) {
 
   // Template files
   const templates = {
-    js: `import { LitElement, html, css } from 'lit';
+    ts: `import { html, css, unsafeCSS } from 'lit';
+import {customElement} from 'lit/decorators.js';
+import {BaseElement} from '@ucalgary-design-system/core/BaseElement.js';
+import "@ucalgary-design-system/tokens/dist/css/_variables.css";
+import styles from "./${kebabName}.css?inline";
 
-export class ${componentName} extends LitElement {
-  static styles = css\`
-    /* Add styles here */
-  \`;
+@customElement('ucds-${kebabName}')
+export class ${componentName} extends BaseElement {
+  static styles = [
+    BaseElement.styles,  
+    css\`
+      /* Add styles here */
+    \`,
+    /* https://lit.dev/docs/api/styles/#unsafeCSS */
+    unsafeCSS(styles)
+  ];
 
   render() {
     return html\`
@@ -55,12 +65,10 @@ export class ${componentName} extends LitElement {
     \`;
   }
 }
-
-customElements.define('ucds-${kebabName}', ${componentName});
 `,
     test: `/* eslint-disable import/no-extraneous-dependencies */
 import { html, fixture, expect } from '@open-wc/testing';
-import '@ucalgary-design-system/${kebabName}';
+import '../${kebabName}.js';
 
 describe('${componentName}', () => {
   it('renders properly', async () => {
@@ -84,10 +92,12 @@ export const Default = () => \`<ucds-${kebabName}></ucds-${kebabName}>\`;
   "type": "module",
   "main": "dist/index.js",
   "dependencies": {
+    "@ucalgary-design-system/core": "*",
     "@ucalgary-design-system/tokens": "*",
     "lit": "^3.2.1"
   },
   "devDependencies": {
+    "@open-wc/testing": "^4.0.0",
     "@ucalgary-design-system/tooling-config": "*"
   },
   "scripts": {
@@ -101,19 +111,19 @@ export const Default = () => \`<ucds-${kebabName}></ucds-${kebabName}>\`;
   ]
 }
 `,
-    viteConfig: `import { viteConfig } from '@ucalgary-design-system/tooling-config';
+    viteConfig: `import { viteConfig } from "@ucalgary-design-system/tooling-config";
 
 export default {
-  ...viteConfig
+  ...viteConfig,
 };
 `,
-    testConfig: `import { testingConfig } from '@ucalgary-design-system/tooling-config';
+    testConfig: `import { testingConfig } from "@ucalgary-design-system/tooling-config";
 
 export default {
-  ...testingConfig
+  ...testingConfig,
 };
 `,
-    indexJs: `export * from '../${kebabName}.js';
+    indexTs: `export * from '../${kebabName}.js';
 `,
     readme: `# ${componentName}
 
@@ -131,7 +141,7 @@ npm install @ucalgary-design-system/${kebabName}
 
 Import the component into your application:
 
-\`\`\`js
+\`\`\`ts
 import '@ucalgary-design-system/${kebabName}';
 \`\`\`
 
@@ -173,16 +183,30 @@ npm run test -w @ucalgary-design-system/ucds-${kebabName}
 
 
 `,
+    css: `/* Styles for ${componentName} */
+:host {
+  display: block;
+}`,
+    tsconfig: `{
+  "extends": "@ucalgary-design-system/tooling-config/tsconfig.json",
+  "compilerOptions": {
+    /* These need to be redefined here so the esbuild plugin (used for testing) can pick them */
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false
+  }
+}`,
   };
 
   // Write files
-  fs.writeFileSync(path.join(componentDir, `${kebabName}.js`), templates.js);
-  fs.writeFileSync(path.join(testDir, `${kebabName}.test.js`), templates.test);
-  fs.writeFileSync(path.join(storiesDir, `${kebabName}.stories.js`), templates.story);
+  fs.writeFileSync(path.join(componentDir, `${kebabName}.ts`), templates.ts);
+  fs.writeFileSync(path.join(componentDir, `${kebabName}.css`), templates.css);
+  fs.writeFileSync(path.join(componentDir, 'tsconfig.json'), templates.tsconfig);
+  fs.writeFileSync(path.join(testDir, `${kebabName}.test.ts`), templates.test);
+  fs.writeFileSync(path.join(storiesDir, `${kebabName}.stories.ts`), templates.story);
   fs.writeFileSync(path.join(componentDir, 'package.json'), templates.packageJson);
   fs.writeFileSync(path.join(componentDir, 'vite.config.js'), templates.viteConfig);
   fs.writeFileSync(path.join(componentDir, 'web-test-runner.config.js'), templates.testConfig);
-  fs.writeFileSync(path.join(srcDir, 'index.js'), templates.indexJs);
+  fs.writeFileSync(path.join(srcDir, 'index.ts'), templates.indexTs);
   fs.writeFileSync(path.join(componentDir, 'README.md'), templates.readme);
 
   console.log(`Component \"${componentName}\" created successfully at ${componentDir}`);

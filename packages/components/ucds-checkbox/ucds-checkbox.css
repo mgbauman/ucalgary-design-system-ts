@@ -1,0 +1,14 @@
+@import "@ucalgary-design-system/core/mixins.css";
+
+p {
+  background-color: var(--ucds-color-action-inverse-active);
+
+  &.green-text {
+    color: green;
+    background-color: white;
+  }
+}
+
+.green-text {
+  @mixin focus;
+}

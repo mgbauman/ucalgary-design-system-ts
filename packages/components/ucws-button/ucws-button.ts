@@ -1,38 +1,40 @@
-import { LitElement, html, css } from "lit";
-// import "/packages/tokens/css/_variables.css";
+import { html, css } from "lit";
 import "@ucalgary-design-system/tokens/dist/css/_variables.css";
+import {customElement, property} from 'lit/decorators.js';
+import {BaseElement} from "@ucalgary-design-system/core/BaseElement.js"
+
+type ButtonVariant = 'default' | 'ghost' | 'alt';
 
 /**
  * Primary UI component for user interaction
  *
  * @element ucws-button
  *
- * @prop {string} buttonType - The type of button. One of {'default', 'ghost'}
+ * @prop {string} variant - The type of button. One of {'default', 'ghost'}
  * @prop {string} href - The url the button should send users
  * @slot - This slot is used to put text inside the button
  */
-export class UcwsButton extends LitElement {
-  static properties = {
-    buttonType: { type: String, attribute: "button-type" },
-    href: { type: String },
-  };
+@customElement('ucws-button')
+export class UcwsButton extends BaseElement {
 
-  get buttonType() {
-    return this._buttonType;
+  private _variant: ButtonVariant = 'default'
+
+  @property({type: String, attribute: "button-type"})
+  get variant(): ButtonVariant {
+    return this._variant;
   }
 
-  set buttonType(value) {
-    const allowedTypes = ["default", "ghost", "alt"]; // Allowed values for 'type'.
-    if (allowedTypes.includes(value)) {
-      this._buttonType = value;
-    } else {
-      this._buttonType = "default"; // Fallback to 'default' if invalid value
-      // is provided.
-    }
-    this.requestUpdate(); // Trigger re-render when type changes.
+  set variant(value: string) {
+    const validVariants: ButtonVariant[] = ['default', 'ghost', 'alt'];
+    this._variant = validVariants.includes(value as ButtonVariant) ? (value as ButtonVariant) : 'default';
   }
 
-  static styles = css`
+  @property({type: String})
+  public href = "";
+
+  static styles = [
+      BaseElement.styles,
+      css`
     .btn {
       position: relative;
       display: inline-block;
@@ -100,17 +102,11 @@ export class UcwsButton extends LitElement {
       border-color: transparent;
       background-color: var(--ucds-color-action-active);
     }
-  `;
-
-  constructor() {
-    super();
-    this._buttonType = "default";
-    this.href = "";
-  }
+  `];
 
   render() {
     return html`
-      <a class="btn ${this.buttonType}" href="${this.href}" role="button">
+      <a class="btn ${this.variant}" href="${this.href}" role="button">
         <slot></slot>
 
         <svg
@@ -136,5 +132,3 @@ export class UcwsButton extends LitElement {
     `;
   }
 }
-
-customElements.define("ucws-button", UcwsButton);

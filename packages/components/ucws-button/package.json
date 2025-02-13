@@ -4,6 +4,7 @@
   "type": "module",
   "main": "dist/index.js",
   "dependencies": {
+    "@ucalgary-design-system/core": "*",
     "@ucalgary-design-system/tokens": "*",
     "lit": "^3.2.1"
   },

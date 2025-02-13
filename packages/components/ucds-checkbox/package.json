@@ -4,12 +4,13 @@
   "type": "module",
   "main": "dist/index.js",
   "dependencies": {
+    "@ucalgary-design-system/core": "*",
     "@ucalgary-design-system/tokens": "*",
     "lit": "^3.2.1"
   },
   "devDependencies": {
-    "@ucalgary-design-system/tooling-config": "*",
-    "@open-wc/testing": "^4.0.0"
+    "@open-wc/testing": "^4.0.0",
+    "@ucalgary-design-system/tooling-config": "*"
   },
   "scripts": {
     "build": "vite build",

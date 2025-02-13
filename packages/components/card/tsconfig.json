@@ -1,0 +1,8 @@
+{
+  "extends": "@ucalgary-design-system/tooling-config/tsconfig.json",
+  "compilerOptions": {
+    /* These need to be redefined here so the esbuild plugin (used for testing) can pick them */
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false
+  }
+}
