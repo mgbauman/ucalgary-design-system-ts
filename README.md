@@ -1,6 +1,6 @@
 # UCalgary Design system
 
-Welcome to the Ucalgary Design system monorepo! This repository contains a collection of reusable web components designed to enhance and standardize the user experience across the UCalgary web landscape.
+Welcome to the UCalgary Design system monorepo! This repository contains a collection of reusable web components designed to enhance and standardize the user experience across the UCalgary web landscape.
 
 ---
 
@@ -21,14 +21,20 @@ Welcome to the Ucalgary Design system monorepo! This repository contains a colle
 To get started, clone the repository and install dependencies:
 
 ```bash
+# Select desired home for repository
+cd ~
+
 # Clone the repository
-git clone https://github.com/mgbauman/ucalgary-design-system.git
+git clone https://github.com/mgbauman/ucalgary-design-system-ts.git
 
 # Navigate to the project directory
 cd ucalgary-design-system
 
 # Install dependencies
 npm install
+
+# Generate initial web component library files
+npm run build
 ```
 
 ---
