@@ -14,7 +14,7 @@
     "preview": "vite preview --open",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "chromatic": "npx chromatic --project-token=chpt_30e586e96369984",
+    "chromatic": "npx chromatic  # note that --project-token must be set in your env variables",
     "generate": "node scripts/generate-component.js",
     "test": "web-test-runner --config web-test-runner.config.js",
     "test:watch": "web-test-runner --config web-test-runner.config.js --watch",
